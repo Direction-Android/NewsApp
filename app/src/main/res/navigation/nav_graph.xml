@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/newsList">
+
+    <fragment
+        android:id="@+id/newsList"
+        android:name="uz.direction.news.appearance.NewsList"
+        android:label="fragment_news_list"
+        tools:layout="@layout/fragment_news_list" >
+        <action
+            android:id="@+id/action_newsList_to_newsOverview"
+            app:destination="@id/newsOverview" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsOverview"
+        android:name="uz.direction.news.appearance.NewsOverview"
+        android:label="fragment_news_overview"
+        tools:layout="@layout/fragment_news_overview" >
+        <argument
+            android:name="newsTitle"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Emplty Title" />
+        <argument
+            android:name="newsPublisher"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Unknown Publisher" />
+        <argument
+            android:name="newsPublishedAt"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Unknown" />
+        <argument
+            android:name="newsContent"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Empty Body" />
+        <argument
+            android:name="newsImage"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
