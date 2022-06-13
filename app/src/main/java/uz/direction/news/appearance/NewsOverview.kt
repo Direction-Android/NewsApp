@@ -1,5 +1,7 @@
 package uz.direction.news.appearance
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,8 +37,12 @@ class NewsOverview : Fragment() {
         binding.apply {
             newsOverviewTitle.text = args.newsTitle
             newsOverviewPublisher.text = args.newsPublisher
-            newsOverviewPublishedAt.text = args.newsPublishedAt
+            newsOverviewPublishedAt.text = args.newsPublishedAt?.subSequence(0, 10) ?: args.newsPublishedAt
             newsOverviewContent.text = args.newsContent
+        }
+
+        binding.linkToNews.setOnClickListener{
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(args.newsLink)))
         }
     }
 }

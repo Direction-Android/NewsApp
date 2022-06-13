@@ -43,5 +43,10 @@
             android:name="newsImage"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="newsLink"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

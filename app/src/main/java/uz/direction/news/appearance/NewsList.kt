@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import uz.direction.news.appearance.rv.NewsAdapter
 import uz.direction.news.data.model.Article
 import uz.direction.news.data.network.RetrofitService
@@ -48,7 +49,8 @@ class NewsList : Fragment() {
             newsPublisher = news[position].author,
             newsPublishedAt = news[position].publishedAt,
             newsContent = news[position].content,
-            newsImage = news[position].urlToImage
+            newsImage = news[position].urlToImage,
+            newsLink = news[position].url
         )
 
         findNavController().navigate(action)
