@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import uz.direction.news.appearance.rv.NewsAdapter
 import uz.direction.news.data.model.Article
 import uz.direction.news.data.network.RetrofitService
-import uz.direction.news.data.network.news.NewsService
 import uz.direction.news.data.repository.NewsRepository
 import uz.direction.news.databinding.FragmentNewsListBinding
 
@@ -39,6 +39,7 @@ class NewsList : Fragment() {
             binding.newsRecycleView.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 adapter = newsAdapter
+                adapter?.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.ALLOW
             }
         }
     }

@@ -11,11 +11,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        repository.getNews("us")
-//
-//        repository.newsLiveData.observe(this){ news ->
-//            binding.newsHeader.text = news.articles[0].title
-//        }
     }
 }
