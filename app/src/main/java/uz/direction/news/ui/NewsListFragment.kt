@@ -10,24 +10,26 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.direction.news.R
 import uz.direction.news.ui.adapter.NewsAdapter
 import uz.direction.news.data.model.Article
+import uz.direction.news.data.model.Countries
 import uz.direction.news.data.network.RetrofitService
 import uz.direction.news.data.repository.NewsRepository
+import uz.direction.news.data.repository.NewsRepositoryInterface
 import uz.direction.news.databinding.FragmentNewsListBinding
 
 class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     private val binding by viewBinding(FragmentNewsListBinding::bind)
-    private val repository = NewsRepository(RetrofitService.newsService)
+    private val repository: NewsRepositoryInterface = NewsRepository(RetrofitService.newsService)
     private var news: List<Article> = ArrayList()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         if (savedInstanceState == null) {
-            repository.getNews("us")
+            repository.getNews(Countries.US.name)
         }
         repository.newsLiveData.observe(viewLifecycleOwner) { news ->
             this@NewsListFragment.news = news.articles
-            val newsAdapter = NewsAdapter(news.articles) { position -> onItemClick(position)  }
+            val newsAdapter = NewsAdapter(news.articles) { position -> onItemClick(position) }
 
             binding.newsRecycleView.apply {
                 layoutManager =
@@ -40,7 +42,8 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     }
 
     private fun onItemClick(position: Int) {
-        val action = NewsListFragmentDirections.actionNewsListToNewsOverview(newsArticle = news[position])
+        val action =
+            NewsListFragmentDirections.actionNewsListToNewsOverview(newsArticle = news[position])
         findNavController().navigate(action)
     }
 
