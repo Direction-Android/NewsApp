@@ -4,7 +4,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appearance.NewsList">
+    tools:context=".ui.NewsListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newsRecycleView"

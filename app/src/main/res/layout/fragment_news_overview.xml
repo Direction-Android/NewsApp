@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appearance.NewsOverview">
+    tools:context=".ui.NewsOverviewFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/newsOverviewImage"
@@ -53,7 +53,7 @@
         android:text="@string/newsTitleDefault"
         android:layout_marginEnd="15dp"
         android:maxLines="1"
-        android:gravity="right"/>
+        android:gravity="end"/>
 
     <TextView
         android:id="@+id/newsOverviewContent"

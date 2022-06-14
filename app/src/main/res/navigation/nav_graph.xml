@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newsList"
-        android:name="uz.direction.news.appearance.NewsList"
+        android:name="uz.direction.news.ui.NewsListFragment"
         android:label="fragment_news_list"
         tools:layout="@layout/fragment_news_list" >
         <action
@@ -16,37 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/newsOverview"
-        android:name="uz.direction.news.appearance.NewsOverview"
+        android:name="uz.direction.news.ui.NewsOverviewFragment"
         android:label="fragment_news_overview"
         tools:layout="@layout/fragment_news_overview" >
         <argument
-            android:name="newsTitle"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Emplty Title" />
-        <argument
-            android:name="newsPublisher"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Unknown Publisher" />
-        <argument
-            android:name="newsPublishedAt"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Unknown" />
-        <argument
-            android:name="newsContent"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Empty Body" />
-        <argument
-            android:name="newsImage"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="newsLink"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            android:name="newsArticle"
+            app:argType="uz.direction.news.data.model.Article" />
     </fragment>
 </navigation>

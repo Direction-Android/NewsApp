@@ -1,4 +1,4 @@
-package uz.direction.news.appearance.rv
+package uz.direction.news.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,20 +10,24 @@ import com.bumptech.glide.Glide
 import uz.direction.news.R
 import uz.direction.news.data.model.Article
 
-class NewsAdapter(private val newsList : List<Article>, private val onItemClick: (position : Int) -> Unit) : RecyclerView.Adapter<NewsAdapter.ViewHolder>(){
+class NewsAdapter(
+    private val newsList: List<Article>,
+    private val onItemClick: (position: Int) -> Unit
+) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     class ViewHolder(
-        itemView: View,
+        view: View,
         private val onItemClick: (position: Int) -> Unit
-    ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    ) : RecyclerView.ViewHolder(view), View.OnClickListener {
         init {
-            itemView.setOnClickListener(this)
+            view.setOnClickListener(this)
         }
-        val newsImageView: ImageView = itemView.findViewById(R.id.newsImage)
-        val newsTitleView: TextView = itemView.findViewById(R.id.newsTitle)
-        val newsTextView: TextView = itemView.findViewById(R.id.newsText)
-        val newsPublisherView: TextView = itemView.findViewById(R.id.newsPublisher)
-        val newsUpdatedTimeView: TextView = itemView.findViewById(R.id.newsUpdatedTime)
+
+        val newsImageView: ImageView = view.findViewById(R.id.newsImage)
+        val newsTitleView: TextView = view.findViewById(R.id.newsTitle)
+        val newsTextView: TextView = view.findViewById(R.id.newsText)
+        val newsPublisherView: TextView = view.findViewById(R.id.newsPublisher)
+        val newsUpdatedTimeView: TextView = view.findViewById(R.id.newsUpdatedTime)
         override fun onClick(p0: View?) {
             val position = bindingAdapterPosition
             onItemClick(position)
@@ -37,13 +41,8 @@ class NewsAdapter(private val newsList : List<Article>, private val onItemClick:
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemViewModel = newsList[position]
-
-        Glide
-            .with(holder.itemView.context)
-            .load(itemViewModel.urlToImage)
-            .placeholder(R.drawable.img)
-            .into(holder.newsImageView)
         holder.apply {
+            newsImageView.setImageFromUrl(itemViewModel.urlToImage)
             newsTitleView.text = itemViewModel.title
             newsTextView.text = itemViewModel.description
             newsPublisherView.text = itemViewModel.author
@@ -53,4 +52,12 @@ class NewsAdapter(private val newsList : List<Article>, private val onItemClick:
 
     override fun getItemCount(): Int = newsList.size
 
+}
+
+fun ImageView.setImageFromUrl(imageUrl: String?) {
+    Glide
+        .with(this)
+        .load(imageUrl)
+        .placeholder(R.drawable.img)
+        .into(this)
 }
